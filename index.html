@@ -472,11 +472,11 @@
     </div>
 
     <!-- Link to external JS -->
-    <script>// Initialize variables
-        // Initialize variables
+    <script>
+       // Initialize variables
 let cart = [];
 let sender = '';
-let source = '';
+let source = 'facebook';
 
 // Load event listener to parse query parameters and set the min date for the date picker
 window.addEventListener('load', (event) => {
@@ -794,12 +794,12 @@ function confirmOrder() {
     console.log('Sender:', sender);
 
     // Prepare cart data in the required format
-    const cartData = cart.map(item => ({
+    const cartDataArray = cart.map(item => ({
         name: item.name,
         quantity: item.quantity,
         price: item.price,
     }));
-    
+
     // Capture form details
     const fullName = document.getElementById("full-name").value.trim();
     const mobileNumber = document.getElementById("mobile-number").value.trim();
@@ -811,19 +811,21 @@ function confirmOrder() {
 
     const payload = {
         order_id: orderId,
-        cart_data: cartData,
+        cart_data: {
+            cartdata: cartDataArray // Ensure cartdata is an array
+        },
+        customer_details: {
+            full_name: fullName,
+            mobile_number: mobileNumber,
+            email_address: emailAddress,
+            event_address: eventAddress,
+            date_of_event: dateOfEvent,
+            event_duration: eventDuration,
+            need_manpower: needManpower
+        },
         additional_data: {
             sender: sender,  // Include sender from URL query parameters
-            source: source,   // Include source from URL query parameters
-            customer_details: {
-                full_name: fullName,
-                mobile_number: mobileNumber,
-                email_address: emailAddress,
-                event_address: eventAddress,
-                date_of_event: dateOfEvent,
-                event_duration: eventDuration,
-                need_manpower: needManpower
-            }
+            source: source   // Include source from URL query parameters
         }
     };
 
@@ -934,7 +936,8 @@ if (document.readyState === 'complete') {
 function updateProductCardQuantity(sku, quantity) {
     const quantityElement = document.getElementById(`quantity-${sku}`);
     quantityElement.textContent = quantity;
-} 
+}
+
        </script>
 </body>
 </html>
