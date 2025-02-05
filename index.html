@@ -267,31 +267,56 @@
         }
         
         #cart-container {
-            max-height: 700px; /* Adjust based on your design */
-            overflow-y: auto;  /* Add vertical scrolling if content exceeds max-height */
-        }
-        
-        .total {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-top: 15px;
-            padding-top: 10px;
-            border-top: 1px solid #ddd;
-        }
-        
-        .back-to-products-btn {
-            background-color: #ff5722;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 20px;
-            width: 100%;
-            text-align: center;
-            display: none;
-        }
-        
+    max-height: calc(100% - 150px); /* Leave space for the buttons */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-bottom: 20px; /* Add some spacing at the bottom */
+}
+.cart-footer {
+    position: sticky; /* Stick to the bottom of the cart container */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff; /* Match the cart background */
+    padding: 16px;
+    border-top: 1px solid #ddd; /* Separator line */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between elements */
+    z-index: 10; /* Ensure it stays above other content */
+}
+
+.total {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: right; /* Align total amount to the right */
+    margin: 0; /* Remove default margins */
+}
+
+.proceed-btn,
+.back-to-products-btn {
+    width: 100%; /* Full width */
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.proceed-btn {
+    background-color: #28a745; /* Green for Proceed */
+    color: white;
+}
+
+.back-to-products-btn {
+    background-color: #ff5722; /* Orange for Back to Product List */
+    color: white;
+}
+
+.proceed-btn:disabled {
+    background-color: #ccc; /* Gray when disabled */
+    cursor: not-allowed;
+}
         .cart {
             display: none;
             flex: 0 0 25%;
@@ -439,11 +464,15 @@
         <div class="cart" id="cart-container">
             <h2>Cart</h2>
             <div id="cart-items"></div>
-            <div class="total">Total: ₱<span id="total-amount">0.00</span></div>
-            <button class="proceed-btn" id="proceed-btn" onclick="proceedToOrder()" disabled>Proceed</button>
-            <button class="back-to-products-btn" onclick="closeCart()">Back to Product List</button>
+        
+            <!-- Footer with total amount and buttons -->
+            <div class="cart-footer">
+                <div class="total">Total: ₱<span id="total-amount">0.00</span></div>
+                <button class="proceed-btn" id="proceed-btn" onclick="proceedToOrder()" disabled>Proceed</button>
+                <button class="back-to-products-btn" onclick="closeCart()">Back to Product List</button>
+            </div>
         </div>
-    </div>
+        
 
     <!-- Confirmation Popup -->
     <div id="confirmation-popup" class="confirmation-popup">
