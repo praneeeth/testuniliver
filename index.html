@@ -503,7 +503,7 @@
     <!-- Link to external JS -->
     <script>
        // Initialize variables
-let cart = [];
+       let cart = [];
 let sender = '';
 let source = 'facebook';
 
@@ -519,152 +519,156 @@ window.addEventListener('load', (event) => {
     const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
     const tomorrowISO = tomorrow.toISOString().split('T')[0];
     document.getElementById('date-of-event').setAttribute('min', tomorrowISO);
+
+    // Initial rendering of products when navigating directly to this page
+    renderProducts();
 });
 
 // Sample products array
 const products = [
-  {
-    "sku": 68770743,
-    "name": "MAGNUM VANILLA ALMOND 24X80ML",
-    "price": 2040,
-    "image": "https://cdn.yellowmessenger.com/qwUbLUCEagAL1738055751866.png"
-  },
-  {
-    "sku": 68770746,
-    "name": "MAGNUM VANILLA CLASSIC 24X80ML",
-    "price": 2040,
-    "image": "https://cdn.yellowmessenger.com/ZcFYHWvhq82T1738056050334.png"
-  },
-  {
-    "sku": 69968526,
-    "name": "MAGNUM CHOCOLATE LUXE 24X80ML",
-    "price": 2040,
-    "image": "https://cdn.yellowmessenger.com/BlcuGExRU6bx1738056097849.png"
-  },
-  {
-    "sku": 68773882,
-    "name": "MAGNUM MINI VANILLA ALMOND 6X(6X45ML)",
-    "price": 1800,
-    "image": "https://cdn.yellowmessenger.com/dRe5TDOTu0HO1738056261623.png"
-  },
-  {
-    "sku": 64333401,
-    "name": "MAGNUM MINI CL&AL&CCRM RL3 6X(6X45ML)",
-    "price": 1800,
-    "image": "https://cdn.yellowmessenger.com/stRjEkbn5ps11738056325376.png"
-  },
-  {
-    "sku": 68814235,
-    "name": "MAGNUM MINI CL&AL&BR HB 6X(6X45ML)",
-    "price": 1800,
-    "image": "https://cdn.yellowmessenger.com/5oClbekenotf1738056357278.png"
-  },
-  {
-    "sku": 64364114,
-    "name": "WALL'S WINNIE THE POOH 24X90ML (60G)",
-    "price": 720,
-    "image": "https://cdn.yellowmessenger.com/tDiJpwNGz66f1738056408880.png"
-  },
-  {
-    "sku": 68783846,
-    "name": "WALL'S BITES VAN & CARA V3 24X(4X15G)",
-    "price": 720,
-    "image": "https://cdn.yellowmessenger.com/iZPzQsNxvqfd1738056448608.png"
-  },
-  {
-    "sku": 69748812,
-    "name": "CORNETTO DISC BLACK CHCO COOKIE 24X115ML",
-    "price": 840,
-    "image": "https://cdn.yellowmessenger.com/M0capaaYGGOJ1738056492548.png"
-  },
-  {
-    "sku": 69748811,
-    "name": "CORNETTO DISC WHITE CHOCO C&C 24X115ML",
-    "price": 840,
-    "image": "https://cdn.yellowmessenger.com/M0ImEZ5bBikA1738056518104.png"
-  },
-  {
-    "sku": 62729374,
-    "name": "CORNETTO DISC MATCHA CRUMBLE 24X115ML",
-    "price": 840,
-    "image": "ttps://cdn.yellowmessenger.com/FBqH22J514cw1738056546899.png"
-  },
-  {
-    "sku": 21051151,
-    "name": "CORNETTO CHOCOLATE 24X110ML",
-    "price": 600,
-    "image": "https://cdn.yellowmessenger.com/jK34V0Qtg0ML1738056616628.png"
-  },
-  {
-    "sku": 67052108,
-    "name": "CORNETTO POOH COOKIES & CREAM 24X110ML",
-    "price": 600,
-    "image": "https://cdn.yellowmessenger.com/iNCtiAacRs8P1738056668954.png"
-  },
-  {
-    "sku": 21051154,
-    "name": "CORNETTO VANILLA 24X110ML",
-    "price": 600,
-    "image": "https://cdn.yellowmessenger.com/im4NBq98JZmq1738056701249.png"
-  },
-  {
-    "sku": 62716727,
-    "name": "SELECTA SUNDAE CUPS CHOCO 16X100ML",
-    "price": 480,
-    "image": "https://cdn.yellowmessenger.com/7WFzuyej8tkp1738056753826.png"
-  },
-  {
-    "sku": 62729411,
-    "name": "SELECTA OOH CRUNCHY MAX 20X65ML",
-    "price": 480,
-    "image": "https://cdn.yellowmessenger.com/IC2wM3RuqkTW1738056783301.png"
-  },
-  {
-    "sku": 69760064,
-    "name": "SELECTA OOH BOOM CHOCO 24X60ML",
-    "price": 480,
-    "image": "https://cdn.yellowmessenger.com/u72CAZrULBH41738056820081.png"
-  },
-  {
-    "sku": 69737423,
-    "name": "SELECTA OOH BOOM COOKIESNCRM 24X60ML",
-    "price": 480,
-    "image": "https://cdn.yellowmessenger.com/u72CAZrULBH41738056820081.png"
-  },
-  {
-    "sku": 67963903,
-    "name": "SELECTA CUPS CHOCO 16X100ML",
-    "price": 400,
-    "image": "https://cdn.yellowmessenger.com/N2VvbDpNxSWS1738056902592.png"
-  },
-  {
-    "sku": 67963907,
-    "name": "SELECTA CUPS UBE 16X100ML",
-    "price": 400,
-    "image": "https://cdn.yellowmessenger.com/eZ0CJJo00sLc1738056934406.png"
-  },
-  {
-    "sku": 69744614,
-    "name": "SELECTA OOH WATERMELON SLICE 30X60ML",
-    "price": 450,
-    "image": "https://cdn.yellowmessenger.com/yClVPhaBVsLE1738057140535.png"
-  }
-];
+	{
+	  "sku": 68770743,
+	  "name": "MAGNUM VANILLA ALMOND 24X80ML",
+	  "price": 2040,
+	  "image": "https://cdn.yellowmessenger.com/qwUbLUCEagAL1738055751866.png"
+	},
+	{
+	  "sku": 68770746,
+	  "name": "MAGNUM VANILLA CLASSIC 24X80ML",
+	  "price": 2040,
+	  "image": "https://cdn.yellowmessenger.com/ZcFYHWvhq82T1738056050334.png"
+	},
+	{
+	  "sku": 69968526,
+	  "name": "MAGNUM CHOCOLATE LUXE 24X80ML",
+	  "price": 2040,
+	  "image": "https://cdn.yellowmessenger.com/BlcuGExRU6bx1738056097849.png"
+	},
+	{
+	  "sku": 68773882,
+	  "name": "MAGNUM MINI VANILLA ALMOND 6X(6X45ML)",
+	  "price": 1800,
+	  "image": "https://cdn.yellowmessenger.com/dRe5TDOTu0HO1738056261623.png"
+	},
+	{
+	  "sku": 64333401,
+	  "name": "MAGNUM MINI CL&AL&CCRM RL3 6X(6X45ML)",
+	  "price": 1800,
+	  "image": "https://cdn.yellowmessenger.com/stRjEkbn5ps11738056325376.png"
+	},
+	{
+	  "sku": 68814235,
+	  "name": "MAGNUM MINI CL&AL&BR HB 6X(6X45ML)",
+	  "price": 1800,
+	  "image": "https://cdn.yellowmessenger.com/5oClbekenotf1738056357278.png"
+	},
+	{
+	  "sku": 64364114,
+	  "name": "WALL'S WINNIE THE POOH 24X90ML (60G)",
+	  "price": 720,
+	  "image": "https://cdn.yellowmessenger.com/tDiJpwNGz66f1738056408880.png"
+	},
+	{
+	  "sku": 68783846,
+	  "name": "WALL'S BITES VAN & CARA V3 24X(4X15G)",
+	  "price": 720,
+	  "image": "https://cdn.yellowmessenger.com/iZPzQsNxvqfd1738056448608.png"
+	},
+	{
+	  "sku": 69748812,
+	  "name": "CORNETTO DISC BLACK CHCO COOKIE 24X115ML",
+	  "price": 840,
+	  "image": "https://cdn.yellowmessenger.com/M0capaaYGGOJ1738056492548.png"
+	},
+	{
+	  "sku": 69748811,
+	  "name": "CORNETTO DISC WHITE CHOCO C&C 24X115ML",
+	  "price": 840,
+	  "image": "https://cdn.yellowmessenger.com/M0ImEZ5bBikA1738056518104.png"
+	},
+	{
+	  "sku": 62729374,
+	  "name": "CORNETTO DISC MATCHA CRUMBLE 24X115ML",
+	  "price": 840,
+	  "image": "ttps://cdn.yellowmessenger.com/FBqH22J514cw1738056546899.png"
+	},
+	{
+	  "sku": 21051151,
+	  "name": "CORNETTO CHOCOLATE 24X110ML",
+	  "price": 600,
+	  "image": "https://cdn.yellowmessenger.com/jK34V0Qtg0ML1738056616628.png"
+	},
+	{
+	  "sku": 67052108,
+	  "name": "CORNETTO POOH COOKIES & CREAM 24X110ML",
+	  "price": 600,
+	  "image": "https://cdn.yellowmessenger.com/iNCtiAacRs8P1738056668954.png"
+	},
+	{
+	  "sku": 21051154,
+	  "name": "CORNETTO VANILLA 24X110ML",
+	  "price": 600,
+	  "image": "https://cdn.yellowmessenger.com/im4NBq98JZmq1738056701249.png"
+	},
+	{
+	  "sku": 62716727,
+	  "name": "SELECTA SUNDAE CUPS CHOCO 16X100ML",
+	  "price": 480,
+	  "image": "https://cdn.yellowmessenger.com/7WFzuyej8tkp1738056753826.png"
+	},
+	{
+	  "sku": 62729411,
+	  "name": "SELECTA OOH CRUNCHY MAX 20X65ML",
+	  "price": 480,
+	  "image": "https://cdn.yellowmessenger.com/IC2wM3RuqkTW1738056783301.png"
+	},
+	{
+	  "sku": 69760064,
+	  "name": "SELECTA OOH BOOM CHOCO 24X60ML",
+	  "price": 480,
+	  "image": "https://cdn.yellowmessenger.com/u72CAZrULBH41738056820081.png"
+	},
+	{
+	  "sku": 69737423,
+	  "name": "SELECTA OOH BOOM COOKIESNCRM 24X60ML",
+	  "price": 480,
+	  "image": "https://cdn.yellowmessenger.com/u72CAZrULBH41738056820081.png"
+	},
+	{
+	  "sku": 67963903,
+	  "name": "SELECTA CUPS CHOCO 16X100ML",
+	  "price": 400,
+	  "image": "https://cdn.yellowmessenger.com/N2VvbDpNxSWS1738056902592.png"
+	},
+	{
+	  "sku": 67963907,
+	  "name": "SELECTA CUPS UBE 16X100ML",
+	  "price": 400,
+	  "image": "https://cdn.yellowmessenger.com/eZ0CJJo00sLc1738056934406.png"
+	},
+	{
+	  "sku": 69744614,
+	  "name": "SELECTA OOH WATERMELON SLICE 30X60ML",
+	  "price": 450,
+	  "image": "https://cdn.yellowmessenger.com/yClVPhaBVsLE1738057140535.png"
+	}
+  ];
 
 // Function to render products on the page
 function renderProducts() {
     const productListElement = document.getElementById("product-list");
     productListElement.innerHTML = ""; // Clear the product list before rendering
+
     products.forEach((product) => {
         const productElement = document.createElement("div");
         productElement.classList.add("product");
         productElement.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" />
+            <img src="${product.image}" alt="${product.name}">
             <h3>${product.name}</h3>
-            <div class="price">PHP ${product.price}</div>
+            <p>PHP ${product.price}</p>
             <div class="quantity-controls">
                 <button class="quantity-btn" onclick="adjustQuantity(${product.sku}, -1)">-</button>
-                <span id="quantity-${product.sku}" class="quantity">0</span>
+                <span id="quantity-${product.sku}">0</span>
                 <button class="quantity-btn" onclick="adjustQuantity(${product.sku}, 1)">+</button>
             </div>
         `;
@@ -678,6 +682,7 @@ function adjustQuantity(sku, change) {
     const quantityElement = document.getElementById(`quantity-${sku}`);
     let quantity = parseInt(quantityElement.textContent);
     quantity += change;
+
     if (quantity < 0) quantity = 0;
     quantityElement.textContent = quantity;
 
@@ -692,21 +697,25 @@ function adjustQuantity(sku, change) {
 function addToCart(sku, quantity) {
     const product = products.find((p) => p.sku === sku);
     const existingProduct = cart.find((p) => p.sku === sku);
+
     if (existingProduct) {
         existingProduct.quantity = quantity; // Update existing product's quantity
     } else {
         cart.push({ ...product, quantity }); // Add new product with specified quantity
     }
-    renderCart();  // Update cart data without showing it
-    updateNotificationBadge();  // Update the badge indicator
+
+    renderCart(); // Update cart data without showing it
+    updateNotificationBadge(); // Update the badge indicator
 }
 
 // Remove product from cart
 function removeFromCart(sku) {
     const productIndex = cart.findIndex((p) => p.sku === sku);
+
     if (productIndex > -1) {
         cart.splice(productIndex, 1);
     }
+
     renderCart();
     updateNotificationBadge();
 }
@@ -716,34 +725,32 @@ function renderCart() {
     const cartItemsElement = document.getElementById("cart-items");
     const totalAmountElement = document.getElementById("total-amount");
     const proceedButton = document.getElementById("proceed-btn");
+
     cartItemsElement.innerHTML = ""; // Clear the cart before rendering
     let total = 0;
+
     cart.forEach((item) => {
         total += item.price * item.quantity;
+
         const cartItemElement = document.createElement("div");
         cartItemElement.classList.add("cart-item");
         cartItemElement.innerHTML = `
-            <div>${item.name} x${item.quantity}</div>
-            <div>₱${item.price * item.quantity}</div>
-            <div class="quantity-controls">
-                <button class="quantity-btn" onclick="adjustQuantityInCart(${item.sku}, -1)">-</button>
-                <span class="quantity">${item.quantity}</span>
-                <button class="quantity-btn" onclick="adjustQuantityInCart(${item.sku}, 1)">+</button>
-            </div>
+            <span>${item.name} x${item.quantity}</span>
+            <span>₱${(item.price * item.quantity).toFixed(2)}</span>
             <button onclick="removeFromCart(${item.sku})">🗑️</button>
         `;
         cartItemsElement.appendChild(cartItemElement);
     });
+
     totalAmountElement.textContent = total.toFixed(2);
+
     // Enable or disable the proceed button based on total cart value
-    if (total > 5000) {
-        proceedButton.disabled = false;
-    } else {
-        proceedButton.disabled = true;
-    }
+    proceedButton.disabled = total <= 5000;
+
     // Add a note above the proceed button
     const cartContainer = document.getElementById("cart-container");
     let note = document.getElementById("cart-note");
+
     if (!note) {
         note = document.createElement("p");
         note.id = "cart-note";
@@ -752,24 +759,15 @@ function renderCart() {
         note.style.fontSize = "10px";
         cartContainer.insertBefore(note, proceedButton);
     }
-    note.textContent = total > 5000 ? "" : "Note: Total cart value must exceed ₱5000 to proceed.";
-}
 
-// Adjust quantity inside the cart
-function adjustQuantityInCart(sku, change) {
-    const item = cart.find((p) => p.sku === sku);
-    if (item) {
-        item.quantity += change;
-        if (item.quantity < 1) item.quantity = 1;
-        renderCart(); // Re-render the cart with updated quantities
-        updateProductCardQuantity(sku, item.quantity); // Sync the quantity in the product card
-    }
+    note.textContent = total > 5000 ? "" : "Note: Total cart value must exceed ₱5000 to proceed.";
 }
 
 // Update notification badge
 function updateNotificationBadge() {
     const badge = document.getElementById("notification-badge");
     const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+
     if (itemCount > 0) {
         badge.textContent = itemCount;
         badge.style.display = "inline-block";
@@ -782,6 +780,7 @@ function updateNotificationBadge() {
 function toggleCart() {
     const cartContainer = document.getElementById("cart-container");
     cartContainer.classList.toggle("cart-active");
+
     // Ensure proper display based on state
     if (cartContainer.classList.contains("cart-active")) {
         cartContainer.style.display = "block";
@@ -795,19 +794,6 @@ function closeCart() {
     const cartContainer = document.getElementById("cart-container");
     cartContainer.classList.remove("cart-active"); // Remove the active class
     cartContainer.style.display = "none"; // Explicitly hide the cart container
-    // Update the visibility of the 'Check Cart' button
-    const checkCartBtn = document.querySelector(".check-cart-btn");
-    if (cart.length > 0 && window.innerWidth <= 1024) {
-        checkCartBtn.style.display = "block";
-    } else {
-        checkCartBtn.style.display = "none";
-    }
-}
-
-// Update cart visibility based on screen size and cart content
-function updateCartVisibility() {
-    const checkCartBtn = document.querySelector(".check-cart-btn");
-    checkCartBtn.style.display = cart.length > 0 && window.innerWidth <= 1024 ? "block" : "none";
 }
 
 // Proceed to order (send to webhook)
@@ -819,8 +805,6 @@ function proceedToOrder() {
 function confirmOrder() {
     const orderId = "URIC" + Math.floor(Math.random() * 1000000).toString().padStart(6, "0");
     let { source, sender } = Qs.parse(location.search, { ignoreQueryPrefix: true });
-    console.log('Source:', source);
-    console.log('Sender:', sender);
 
     // Prepare cart data in the required format
     const cartDataArray = cart.map(item => ({
@@ -860,7 +844,6 @@ function confirmOrder() {
 
     // Convert the payload to a JSON string
     const payloadString = JSON.stringify(payload);
-    // Log the stringified payload to confirm
     console.log(payloadString, 'payload string');
 
     // Send data via postMessage to the parent window
@@ -894,24 +877,6 @@ function cancelOrder() {
     document.getElementById("confirmation-popup").style.display = "none"; // Simply hide the confirmation popup
 }
 
-// Ensure the cart is visible on larger screens and hidden on mobile
-function handleResize() {
-    const backButton = document.querySelector(".back-to-products-btn");
-    const cartContainer = document.getElementById("cart-container");
-    if (window.innerWidth <= 1024) {
-        backButton.style.display = "block"; // Show the button on smaller screens
-        cartContainer.classList.remove("cart-active"); // Ensure the cart is hidden by default
-    } else {
-        backButton.style.display = "none";  // Hide the button on larger screens
-        cartContainer.style.display = "block"; // Ensure the cart is always visible on larger screens
-    }
-}
-
-// Call handleResize on load and whenever the window is resized
-window.addEventListener("resize", handleResize);
-window.addEventListener("load", handleResize);
-document.querySelector(".back-to-products-btn").addEventListener("click", closeCart);
-
 // Submit form and redirect to product page
 function submitForm() {
     const fullName = document.getElementById("full-name").value.trim();
@@ -942,7 +907,7 @@ function submitForm() {
     const selectedDate = new Date(dateOfEvent);
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Reset time to start of day for comparison
-    
+
     if (selectedDate <= today) {
         document.getElementById('date-error').style.display = 'block';
         return;
@@ -956,17 +921,13 @@ function submitForm() {
     renderProducts();
 }
 
-// Initial rendering of products when navigating directly to this page
-if (document.readyState === 'complete') {
-    renderProducts();
-}
-
 // Sync the product card quantity with the cart quantity
 function updateProductCardQuantity(sku, quantity) {
     const quantityElement = document.getElementById(`quantity-${sku}`);
-    quantityElement.textContent = quantity;
+    if (quantityElement) {
+        quantityElement.textContent = quantity;
+    }
 }
-
        </script>
 </body>
 </html>
