@@ -745,10 +745,14 @@ function renderCart() {
     totalAmountElement.textContent = total.toFixed(2);
 
     // Enable or disable the proceed button based on total cart value
-    proceedButton.disabled = total <= 5000;
+    if (total > 5000) {
+        proceedButton.disabled = false;
+    } else {
+        proceedButton.disabled = true;
+    }
 
     // Add a note above the proceed button
-    const cartContainer = document.getElementById("cart-container");
+    const cartFooter = document.querySelector(".cart-footer"); // Target the footer container
     let note = document.getElementById("cart-note");
 
     if (!note) {
@@ -757,7 +761,7 @@ function renderCart() {
         note.style.color = "red";
         note.style.marginTop = "7px";
         note.style.fontSize = "10px";
-        cartContainer.insertBefore(note, proceedButton);
+        cartFooter.insertBefore(note, proceedButton); // Insert note before the proceed button
     }
 
     note.textContent = total > 5000 ? "" : "Note: Total cart value must exceed ₱5000 to proceed.";
